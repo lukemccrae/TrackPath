@@ -20,13 +20,11 @@ $(document).ready(function() {
             .done(function(data) {
                 console.log(data);
                 console.log(latPosition, longPosition);
-                // $('#greeting').append(data.results[5].formatted_address);
             })
             .fail(function(error) {
                 console.log(error);
             })
         var panPoint = new google.maps.LatLng(latPosition, longPosition);
-        map.panTo(panPoint)
         map.setZoom(15);
     })
 
