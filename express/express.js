@@ -7,9 +7,11 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var puppies = []; //database, probably usually an object?
 
+app.use(cors());
 app.use(bodyParser.json());
 app.listen(3000, function() {
         console.log("Listening on port 3000");
@@ -39,9 +41,9 @@ app.get('/puppies/:id', function(req, res, next) { // this is a get request. it 
 app.post('/comments', function(req, res, next) { //server receives request, sends back response (res) to the client
     console.log(req.body);
     var puppy = {
-        id: puppies.length,
-        name: req.body.name,
-        phrase: req.body.phrase
+        // id: puppies.length,
+        lat: req.body.lat,
+        long: req.body.long
     }
     puppies.push(puppy);
     res.json(puppy);

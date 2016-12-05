@@ -12,23 +12,43 @@ function initMap(latPosition, longPosition) {
     });
 }
 
+var information = {
+    "lat": "luke",
+    "long": "26"
+}
+
+var infoString = JSON.stringify(information)
+
 $(document).ready(function() {
     navigator.geolocation.getCurrentPosition(function(position) {
-        latPosition = position.coords.latitude;
-        longPosition = position.coords.longitude;
-        $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latPosition + ',' + longPosition + '&key=AIzaSyB6mjYhp5ca_RPpOdHu_Ul7E-YY6BYzmms')
+            latPosition = position.coords.latitude;
+            longPosition = position.coords.longitude;
+            $.get('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latPosition + ',' + longPosition + '&key=AIzaSyB6mjYhp5ca_RPpOdHu_Ul7E-YY6BYzmms')
+                .done(function(data) {
+                    console.log(data);
+                    console.log(latPosition, longPosition);
+                })
+                .fail(function(error) {
+                    console.log(error);
+                })
+            var panPoint = new google.maps.LatLng(latPosition, longPosition);
+            map.setZoom(17);
+        })
+        //
+    $('#trackbutton').on('click', function() {
+        $.post('http://localhost:3000/comments', "hi")
+        console.log(information);
+        initMap()
+
+    })
+    $('#showbutton').on('click', function() {
+        $.get('http://localhost:3000/puppies')
             .done(function(data) {
                 console.log(data);
-                console.log(latPosition, longPosition);
             })
-            .fail(function(error) {
-                console.log(error);
-            })
-        var panPoint = new google.maps.LatLng(latPosition, longPosition);
-        map.setZoom(15);
     })
 
-    $('#button').on('click', initMap)
+
 
     function initMap() {
         var myLatLng = {
@@ -37,7 +57,7 @@ $(document).ready(function() {
         };
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 15,
+            zoom: 17,
             center: myLatLng
         });
 
@@ -47,4 +67,5 @@ $(document).ready(function() {
             title: 'Hello World!'
         });
     }
+
 })
