@@ -12,6 +12,10 @@ var cors = require('cors');
 var puppies = []; //database, probably usually an object?
 
 app.use(cors());
+// app.use(bodyParser.urlencoded({
+//     extended: false
+// }))
+
 app.use(bodyParser.json());
 app.listen(3000, function() {
         console.log("Listening on port 3000");
@@ -42,8 +46,9 @@ app.post('/comments', function(req, res, next) { //server receives request, send
     console.log(req.body);
     var puppy = {
         // id: puppies.length,
-        lat: req.body.lat,
-        long: req.body.long
+        position: req.body.position,
+        long: req.body.long,
+        date: req.body.time
     }
     puppies.push(puppy);
     res.json(puppy);
