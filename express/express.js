@@ -46,9 +46,14 @@ app.post('/comments', function(req, res, next) { //server receives request, send
     console.log(req.body);
     var puppy = {
         // id: puppies.length,
-        position: req.body.position,
-        long: req.body.long,
-        date: req.body.time
+        "date": req.body.date,
+        "hour": req.body.hour,
+        "minute": req.body.minute,
+        "day": req.body.day,
+        "month": req.body.month,
+        "year": req.body.year,
+        lat: req.body.lat,
+        long: req.body.long
     }
     puppies.push(puppy);
     res.json(puppy);

@@ -32,20 +32,28 @@ $(document).ready(function() {
         //     currentdate.getHours() + ":" +
         //     currentdate.getMinutes() + ":" +
         //     currentdate.getSeconds();
-        console.log(new Date().toLocaleString());
-        var latLong = {
+
+        var date = new Date();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var current = month + '/' + day + '/' + year + ' ' + hour + ':' + minute;
+
+        console.log(current);
+
+        var information = {
+            "date": currentdate,
+            "hour": hour,
+            "minute": minute,
+            "day": day,
+            "month": month,
+            "year": year,
             lat: latPosition,
             long: longPosition
         }
-        var information = {
-            position: latLong,
-            "time": new Date().toLocaleString()
-        }
-
-
         var infoString = JSON.stringify(information)
-
-        //
         $('#trackbutton').on('click', function() {
             $.ajax({
                     url: 'http://localhost:3000/comments',
