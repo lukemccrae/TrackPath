@@ -12,7 +12,16 @@ exports.seed = function(knex, Promise) {
                     year: 5,
                     lat: 5,
                     long: 5
-                })
+                }),
+                knex('path').insert({
+                    hour: 5,
+                    minute: 5,
+                    day: 5,
+                    month: 5,
+                    year: 5,
+                    lat: 5,
+                    long: 5
+                }) cd w
             ]);
         });
 };

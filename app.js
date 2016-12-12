@@ -39,12 +39,12 @@ $(document).ready(function() {
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
-        var current = month + '/' + day + '/' + year + ' ' + hour + ':' + minute;
+        var time = month + '/' + day + '/' + year + ' ' + hour + ':' + minute;
 
-        console.log(current);
+        console.log(time);
 
         var information = {
-            "date": currentdate,
+            "time": time,
             "hour": hour,
             "minute": minute,
             "day": day,
